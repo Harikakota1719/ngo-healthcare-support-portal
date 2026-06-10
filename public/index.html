@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareNet - NGO Healthcare Support Portal</title>
+  <!-- Google Fonts: Outfit (headings) and Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <i class="fa-solid fa-heart-pulse logo-icon"></i>
+        <span>Care<span class="logo-accent">Net</span></span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active" onclick="closeMenu()"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#patient-support" class="nav-link" onclick="closeMenu()"><i
+            class="fa-solid fa-hand-holding-medical"></i> Get Support</a>
+        <a href="#volunteer-register" class="nav-link" onclick="closeMenu()"><i class="fa-solid fa-user-doctor"></i>
+          Volunteer</a>
+        <a href="#ai-chatbot" class="nav-link" onclick="closeMenu()"><i class="fa-solid fa-robot"></i> AI FAQ Bot</a>
+        <a href="#admin-dashboard" class="nav-link" onclick="closeMenu()"><i class="fa-solid fa-chart-line"></i> Admin
+          Panel</a>
+        <a href="#contact" class="nav-link" onclick="closeMenu()"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- 1. Home / Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-overlay-grid"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="hero-tagline"><i class="fa-solid fa-shield-halved"></i> Healing Hands, Caring Hearts</span>
+          <h1 class="hero-title">Empowering Communities Through <span class="gradient-text">Accessible Healthcare</span>
+          </h1>
+          <p class="hero-desc">
+            CareNet is a concept NGO dedicated to matching medical resources and volunteers with patients in urgent
+            need. We use intelligent assistance to streamline workflows and deliver help where it's needed most.
+          </p>
+          <div class="hero-cta">
+            <a href="#patient-support" class="btn btn-primary btn-lg"><i class="fa-solid fa-notes-medical"></i> Request
+              Medical Aid</a>
+            <a href="#volunteer-register" class="btn btn-outline btn-lg"><i class="fa-solid fa-stethoscope"></i> Become
+              a Volunteer</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-user-injured stat-icon"></i>
+            </div>
+            <div class="stat-details">
+              <h3 id="stat-patients" class="stat-number">120</h3>
+              <p class="stat-label">Patients Sourced</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-handshake-angle stat-icon"></i>
+            </div>
+            <div class="stat-details">
+              <h3 id="stat-volunteers" class="stat-number">3</h3>
+              <p class="stat-label">Active Volunteers</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-circle-check stat-icon"></i>
+            </div>
+            <div class="stat-details">
+              <h3 id="stat-requests" class="stat-number">3</h3>
+              <p class="stat-label">Requests Processed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Patient Support Request Form Section -->
+    <section id="patient-support" class="section-padding bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-circle-info"></i> Support Portal</span>
+          <h2 class="section-title">Patient Support Request</h2>
+          <p class="section-desc">Are you or a loved one in need of medical or financial healthcare support? Submit your
+            request below, and our team will get in touch. Our AI automatically compiles summaries to expedite review.
+          </p>
+        </div>
+
+        <div class="card form-card">
+          <form id="patient-form" class="portal-form" onsubmit="handlePatientSubmit(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="p-name" class="form-label">Full Name <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" id="p-name" class="form-input" placeholder="e.g. John Doe" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="p-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-phone input-icon"></i>
+                  <input type="tel" id="p-phone" class="form-input" placeholder="e.g. +1 555-0100" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="p-email" class="form-label">Email Address <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" id="p-email" class="form-input" placeholder="e.g. john@example.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="p-location" class="form-label">Location (City, State) <span
+                    class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-location-dot input-icon"></i>
+                  <input type="text" id="p-location" class="form-input" placeholder="e.g. Boston, MA" required>
+                </div>
+              </div>
+              <div class="form-group full-width">
+                <label for="p-type" class="form-label">Type of Medical Assistance Needed <span
+                    class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-kit-medical input-icon"></i>
+                  <select id="p-type" class="form-input" required>
+                    <option value="" disabled selected>Select assistance type...</option>
+                    <option value="Cardiology Assistance">Cardiology Assistance</option>
+                    <option value="Pediatric Support">Pediatric Support</option>
+                    <option value="General Health Consultation">General Health Consultation</option>
+                    <option value="Medication Sponsorship">Medication Sponsorship</option>
+                    <option value="Surgical Support">Surgical Support</option>
+                    <option value="Diagnostics/Imaging Aid">Diagnostics/Imaging Aid</option>
+                    <option value="Other Medical Assistance">Other Medical Assistance</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group full-width">
+                <label for="p-desc" class="form-label">Description of Medical Issue <span
+                    class="required">*</span></label>
+                <p class="form-tip"><i class="fa-solid fa-lightbulb"></i> Describe symptoms, urgency, and background.
+                  Gemini AI will generate a summary for our review panel.</p>
+                <textarea id="p-desc" class="form-textarea" rows="5"
+                  placeholder="Please provide specific details about your medical condition, any ongoing treatment, and what assistance is needed..."
+                  required></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="patient-submit-btn" class="btn btn-primary btn-block">
+                <span class="btn-text">Submit Request</span>
+                <span class="btn-spinner hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Volunteer Registration Form Section -->
+    <section id="volunteer-register" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-hands-holding-child"></i> Join Us</span>
+          <h2 class="section-title">Become a Healthcare Volunteer</h2>
+          <p class="section-desc">Are you a healthcare worker, student, or empathetic community member? Register as a
+            volunteer. We will connect you to patient requests in your city based on your specific skills.</p>
+        </div>
+
+        <div class="card form-card">
+          <form id="volunteer-form" class="portal-form" onsubmit="handleVolunteerSubmit(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="v-name" class="form-label">Full Name <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" id="v-name" class="form-input" placeholder="e.g. Dr. Jane Doe" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="v-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-phone input-icon"></i>
+                  <input type="tel" id="v-phone" class="form-input" placeholder="e.g. +1 555-0111" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="v-email" class="form-label">Email Address <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" id="v-email" class="form-input" placeholder="e.g. jane.d@example.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="v-city" class="form-label">City of Operations <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-city input-icon"></i>
+                  <input type="text" id="v-city" class="form-input" placeholder="e.g. Boston" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="v-availability" class="form-label">Availability Schedule <span
+                    class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-calendar-days input-icon"></i>
+                  <select id="v-availability" class="form-input" required>
+                    <option value="" disabled selected>Select availability...</option>
+                    <option value="Flexible Hours">Flexible Hours</option>
+                    <option value="Weekdays Day">Weekdays (9 AM - 5 PM)</option>
+                    <option value="Weekdays Evening">Weekdays (Evenings)</option>
+                    <option value="Weekends Only">Weekends Only</option>
+                    <option value="On Call / Emergency">On Call / Emergency</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="v-skills" class="form-label">Primary Expertise / Skills <span
+                    class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-certificate input-icon"></i>
+                  <input type="text" id="v-skills" class="form-input"
+                    placeholder="e.g. Pediatrics, Cardiology, Nursing, Translation" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="volunteer-submit-btn" class="btn btn-accent btn-block">
+                <span class="btn-text">Register as Volunteer</span>
+                <span class="btn-spinner hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AI FAQ Chatbot Section -->
+    <section id="ai-chatbot" class="section-padding bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-brain"></i> Intelligent Help</span>
+          <h2 class="section-title">AI Healthcare FAQ Assistant</h2>
+          <p class="section-desc">Have questions about our NGO programs, documents required for support, or how to
+            register? Chat with our Google Gemini-powered support agent in real time.</p>
+        </div>
+
+        <div class="chatbot-container">
+          <div class="chatbot-info">
+            <div class="info-header">
+              <i class="fa-solid fa-circle-info"></i>
+              <h3>Quick Topics</h3>
+            </div>
+            <p class="info-text">Click any prompt below to query our AI agent instantly:</p>
+            <div class="chip-container">
+              <button class="chip" onclick="sendQuickMessage('How can I request healthcare support?')">
+                <i class="fa-solid fa-hand-holding-medical"></i> How to request support?
+              </button>
+              <button class="chip" onclick="sendQuickMessage('How do I become a volunteer?')">
+                <i class="fa-solid fa-stethoscope"></i> How to volunteer?
+              </button>
+              <button class="chip" onclick="sendQuickMessage('What documents are required to get help?')">
+                <i class="fa-solid fa-file-invoice-dollar"></i> Required documents?
+              </button>
+              <button class="chip" onclick="sendQuickMessage('How does the NGO help patients?')">
+                <i class="fa-solid fa-circle-question"></i> How do NGOs help?
+              </button>
+              <button class="chip chip-danger"
+                onclick="sendQuickMessage('What is your emergency contact information?')">
+                <i class="fa-solid fa-triangle-exclamation"></i> Emergency contacts?
+              </button>
+            </div>
+            <div class="disclaimer-card">
+              <i class="fa-solid fa-triangle-exclamation disclaimer-icon"></i>
+              <div>
+                <h4>Disclaimer</h4>
+                <p>This AI chatbot is for informational FAQs only. It does not provide medical diagnosis. For
+                  life-threatening emergencies, go to the nearest ER immediately.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chatbot-window card">
+            <div class="chat-header">
+              <div class="chat-bot-avatar">
+                <i class="fa-solid fa-robot"></i>
+                <span class="online-indicator"></span>
+              </div>
+              <div class="chat-bot-details">
+                <h4>CareNet AI Support</h4>
+                <p>PAI-Powered Healthcare Assistant</p>
+              </div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+              <div class="message message-bot">
+                <div class="message-bubble">
+                  Hello! I am CareNet's AI Support Agent. You can ask me how to register as a volunteer, request
+                  healthcare support, which documents to prepare, or general information about our NGO. How can I assist
+                  you today?
+                </div>
+                <span class="message-time">Just now</span>
+              </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div id="chat-typing" class="message message-bot hidden">
+              <div class="message-bubble typing-bubble">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+              </div>
+            </div>
+
+            <form id="chat-form" class="chat-input-area" onsubmit="handleChatSubmit(event)">
+              <input type="text" id="chat-input" class="chat-input" placeholder="Type your question here..." required>
+              <button type="submit" class="chat-send-btn" aria-label="Send message">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Admin Dashboard Section (Concept Level) -->
+    <section id="admin-dashboard" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-lock"></i> Staff Access</span>
+          <h2 class="section-title">Admin Dashboard</h2>
+          <p class="section-desc">Concept level administrative panel for NGO coordinators to view incoming patient
+            requests, read Gemini AI-generated summaries, and monitor registered volunteers.</p>
+        </div>
+
+        <div class="admin-dashboard-container">
+          <div class="dashboard-controls">
+            <button class="btn btn-outline" onclick="fetchAdminData()"><i class="fa-solid fa-rotate"></i> Refresh
+              Dashboard Data</button>
+            <div class="dashboard-status-pill"><i class="fa-solid fa-circle-check"></i> Connected (In-Memory Store)
+            </div>
+          </div>
+
+          <div class="dashboard-tabs">
+            <button id="tab-btn-patients" class="tab-btn active" onclick="switchAdminTab('patients')">
+              <i class="fa-solid fa-user-injured"></i> Patient Requests (<span id="dash-patient-count">2</span>)
+            </button>
+            <button id="tab-btn-volunteers" class="tab-btn" onclick="switchAdminTab('volunteers')">
+              <i class="fa-solid fa-handshake-angle"></i> Volunteers (<span id="dash-volunteer-count">3</span>)
+            </button>
+          </div>
+
+          <!-- Patients Table -->
+          <div id="tab-content-patients" class="tab-content active">
+            <div class="table-responsive">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Patient Info</th>
+                    <th>Type / Location</th>
+                    <th>Gemini AI 2-Sentence Summary</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-patients-body">
+                  <!-- JS populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Volunteers Table -->
+          <div id="tab-content-volunteers" class="tab-content">
+            <div class="table-responsive">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Volunteer Details</th>
+                    <th>City</th>
+                    <th>Expertise & Skills</th>
+                    <th>Availability</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-volunteers-body">
+                  <!-- JS populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact Section -->
+    <section id="contact" class="section-padding bg-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-map-location-dot"></i> Get in Touch</span>
+          <h2 class="section-title">Contact Our Office</h2>
+          <p class="section-desc">Have general inquiries, corporate sponsorships, or donor-related questions? Send us a
+            direct message and our operations coordinator will write back.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-cards">
+            <div class="info-item-card">
+              <div class="info-card-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <h4>Call Our Helpline</h4>
+                <p>+1 (800) 555-CARE</p>
+                <span>Mon-Fri (9:00 AM - 6:00 PM EST)</span>
+              </div>
+            </div>
+            <div class="info-item-card">
+              <div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <h4>General Email</h4>
+                <p>info@carenetngo.org</p>
+                <span>Replies within 24 hours</span>
+              </div>
+            </div>
+            <div class="info-item-card">
+              <div class="info-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <h4>Main Office</h4>
+                <p>500 Health Sciences Plaza</p>
+                <span>Suite 12, Boston, MA 02115</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-form-card">
+            <form id="contact-form" class="portal-form" onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label for="c-name" class="form-label">Your Name <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" id="c-name" class="form-input" placeholder="John Doe" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-email" class="form-label">Email Address <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" id="c-email" class="form-input" placeholder="john@example.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-message" class="form-label">Message <span class="required">*</span></label>
+                <textarea id="c-message" class="form-textarea" rows="4" placeholder="Type your message here..."
+                  required></textarea>
+              </div>
+
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-block">
+                <span class="btn-text">Send Message</span>
+                <span class="btn-spinner hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Sending...</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-bottom">
+    <div class="container footer-container">
+      <div class="footer-logo-area">
+        <div class="logo">
+          <i class="fa-solid fa-heart-pulse logo-icon"></i>
+          <span>Care<span class="logo-accent">Net</span></span>
+        </div>
+        <p>A Full Stack Developer Assignment - Concept-level NGO Healthcare Support Portal powered by Gemini AI.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Portal Navigation</h4>
+        <div class="footer-links-grid">
+          <a href="#home">Home</a>
+          <a href="#patient-support">Request Aid</a>
+          <a href="#volunteer-register">Volunteer</a>
+          <a href="#ai-chatbot">AI Chatbot</a>
+          <a href="#admin-dashboard">Admin Panel</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>&copy; 2026 CareNet NGO Portal. Created for educational portfolio purposes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
